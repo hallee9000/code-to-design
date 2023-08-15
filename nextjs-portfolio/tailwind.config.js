@@ -5,7 +5,14 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      aspectRatio: {
+        '4/3': '4 / 3',
+        '16/10': '16 / 10',
+      },
+    },
   },
   plugins: [],
+  corePlugins: {
+  },
 }

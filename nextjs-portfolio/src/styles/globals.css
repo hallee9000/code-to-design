@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --header-bg: rgb(249 250 251 / 0.85);
+}
+
+html[class='dark'] {
+  --header-bg: rgb(63 63 70 / 0.85);
+}
+
 html[class='dark'] img {
   filter: brightness(.8) contrast(1.2);
 }
@@ -19,3 +27,4 @@ html[class='dark'] [data-hide-on-theme='dark'],
 html[class='light'] [data-hide-on-theme='light'] {
   display: none;
 }
+

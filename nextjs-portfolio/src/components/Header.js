@@ -1,24 +1,24 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import ThemeSwitcher from './ThemeSwitcher'
+'use client'
 
-const NavLink = ({ children, to }) => (
-  <Link href={to} className="text-gray-600 hover:text-gray-950 dark:text-gray-300 dark:hover:text-gray-50 transition-all">{ children }</Link>
-)
+import React from 'react'
+import { usePathname } from 'next/navigation'
+import Image from 'next/image'
+import ThemeSwitcher from './ThemeSwitcher'
+import Link from '@/components/atoms/Link'
 
 const Header = function () {
+  const pathname = usePathname()
   return (
-    <header className="fixed top-0 left-0 flex justify-center w-full h-16">
+    <header className="fixed top-0 left-0 flex justify-center w-full h-16 backdrop-blur-lg z-50 bg-[--header-bg]">
       <div className="flex items-center justify-between w-full max-w-2xl p-4">
-        <nav className="flex gap-4 items-center">
-          <Link href="/">
-            <Image src={`/Logo-light.svg`} width={32} height={32} alt="Logo" data-hide-on-theme='dark'/>
-            <Image src={`/Logo-dark.svg`} width={32} height={32} alt="Logo" data-hide-on-theme='light'/>
+        <nav className="flex gap-6 items-center">
+          <Link to="/">
+            <Image src={`/Logo-light.svg`} width={32} height={32} alt="Logo" data-hide-on-theme='dark' priority/>
+            <Image src={`/Logo-dark.svg`} width={32} height={32} alt="Logo" data-hide-on-theme='light' priority/>
           </Link>
-          <NavLink to="/posts">文章</NavLink>
-          <NavLink to="/photo">摄影</NavLink>
-          <NavLink to="/about">关于</NavLink>
+          <Link to="/posts" isActive={pathname==='/posts'}>文章</Link>
+          <Link to="/photography" isActive={pathname==='/photography'}>摄影</Link>
+          <Link to="/about" isActive={pathname==='/about'}>关于</Link>
         </nav>
         <ThemeSwitcher/>
       </div>
