@@ -18,7 +18,7 @@ const PostCard = function ({ id, coverURL, createdAt, title, tags }) {
         <Image
           src={coverURL}
           alt={`Cover for blog: ${title}`}
-          className="w-40 aspect-4/3 object-cover rounded max-sm:w-full"
+          className="w-40 aspect-4/3 object-cover rounded max-sm:w-full max-sm:aspect-16/9"
           width={160}
           height={120}
         />

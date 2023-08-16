@@ -16,12 +16,6 @@ export default function App({ children }) {
     <html suppressHydrationWarning>
       <body>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          href="/icons?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
         <Providers>
           <Header/>
           {children}

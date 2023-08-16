@@ -9,7 +9,7 @@ export const metadata = {
 }
 
 export default async function Posts () {
-  const { status, posts } = await getPosts()
+  const { posts } = await getPosts()
   return (
     <Center className="mt-16 py-4">
       {

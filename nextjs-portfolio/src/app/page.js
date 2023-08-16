@@ -10,7 +10,7 @@ import GroupTitle from '@/components/GroupTitle'
 
 export default async function Home() {
   const { photos } = await getPhotos(5)
-  const { status, posts } = await getPosts(10)
+  const { posts } = await getPosts(10)
 
   return (
     <Center>

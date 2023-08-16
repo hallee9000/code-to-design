@@ -3,6 +3,10 @@ import Head from 'next/head'
 import Center from '@/components/Center'
 import Project from '@/components/Project'
 
+export const metadata = {
+  title: 'About me | Hal\'s castle',
+}
+
 export default async function About () {
   return (
     <>

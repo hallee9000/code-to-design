@@ -6,11 +6,18 @@ import NotionPage from '@/components/NotionPage'
 import { getPostMetadata, getPost } from '@/lib/notion/api'
 import { relativeTime } from '@/lib/date'
 
+export const generateMetadata = async ({ params }) => {
+  const { id } = params
+  const { metadata } = await getPostMetadata(id)
+  return {
+    title: `${metadata.title} | Hal\'s castle`,
+  }
+}
+
 export default async function Post({ params }) {
   const { id } = params
   const { recordMap } = await getPost(id)
   const { metadata } = await getPostMetadata(id)
-  console.log(metadata)
   return (
     <Center className={"mt-16"}>
       <div className="p-4">
@@ -19,7 +26,7 @@ export default async function Post({ params }) {
           <Image
             src={metadata.coverURL}
             alt={`Cover for blog: ${metadata.title}`}
-            className="w-full mb-8 aspect-16/10 object-cover rounded"
+            className="w-full mb-8 aspect-16/9 object-cover rounded"
             width={160}
             height={120}
           />
