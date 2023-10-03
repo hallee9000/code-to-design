@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { cookies } from 'next/headers'
 import Center from '@/components/Center'
 import Tag from '@/components/atoms/Tag'
 import NotionPage from '@/components/NotionPage'
@@ -18,6 +19,9 @@ export default async function Post({ params }) {
   const { id } = params
   const { recordMap } = await getPost(id)
   const { metadata } = await getPostMetadata(id)
+  const cookieStore = cookies()
+  const theme = cookieStore.get('theme')
+
   return (
     <Center className={"mt-16"}>
       <div className="p-4">
@@ -37,7 +41,10 @@ export default async function Post({ params }) {
           { metadata.tags.map((tag, index) => <Tag key={index}>{ tag }</Tag>) }
         </div>
       </div>
-      <NotionPage recordMap={recordMap} />
+      <NotionPage
+        theme={theme.value}
+        recordMap={recordMap}
+      />
     </Center>
   )
 }

@@ -3,13 +3,16 @@
 import React, { useState, useEffect } from 'react'
 import { Sun, Moon } from 'react-feather'
 import { useTheme } from 'next-themes'
+import Cookies from 'js-cookie'
 
 const ThemeSwitcher = function () {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
   function toggleTheme () {
-    setTheme(theme==='light' ? 'dark' : 'light')
+    const newTheme = theme==='light' ? 'dark' : 'light'
+    Cookies.set('theme', newTheme)
+    setTheme(newTheme)
   }
 
   useEffect(() => {

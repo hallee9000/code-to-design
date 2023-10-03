@@ -5,6 +5,7 @@ import Providers from '@/components/Providers'
 import '@/styles/globals.css'
 import 'react-notion-x/src/styles.css'
 import 'prismjs/themes/prism-tomorrow.css'
+import 'react-medium-image-zoom/dist/styles.css'
 
 export const metadata = {
   title: 'Hal\'s castle',
