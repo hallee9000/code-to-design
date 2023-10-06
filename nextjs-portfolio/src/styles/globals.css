@@ -22,9 +22,3 @@ html[class='dark'] img {
     font-weight: 400;
   }
 }
-
-html[class='dark'] [data-hide-on-theme='dark'],
-html[class='light'] [data-hide-on-theme='light'] {
-  display: none;
-}
-

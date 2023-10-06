@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
+import Logo from '@/components/Logo'
 import ThemeSwitcher from './ThemeSwitcher'
 import Link from '@/components/atoms/Link'
 
@@ -13,8 +13,7 @@ const Header = function () {
       <div className="flex items-center justify-between w-full max-w-2xl p-4">
         <nav className="flex gap-6 items-center">
           <Link to="/">
-            <Image src={`/Logo-light.svg`} width={32} height={32} alt="Logo" data-hide-on-theme='dark' priority/>
-            <Image src={`/Logo-dark.svg`} width={32} height={32} alt="Logo" data-hide-on-theme='light' priority/>
+            <Logo/>
           </Link>
           <Link to="/posts" isActive={pathname==='/posts'}>文章</Link>
           <Link to="/photography" isActive={pathname==='/photography'}>摄影</Link>

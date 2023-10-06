@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Providers from '@/components/ThemeProvider'
+import Providers from '@/components/Providers'
 import '@/styles/globals.css'
 import 'react-notion-x/src/styles.css'
 import 'prismjs/themes/prism-tomorrow.css'
