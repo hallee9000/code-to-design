@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import Center from '@/components/atoms/Center'
 import PostCard from '@/components/PostCard'
 import { getPosts } from '@/lib/notion/api'

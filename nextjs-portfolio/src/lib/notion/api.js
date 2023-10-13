@@ -1,45 +1,32 @@
 import { NotionAPI } from 'notion-client'
-import { createHeaders, formatPostMetadata, formatPhotoMetadata } from './helpers'
+import { getList, formatPost, formatPosts, formatPhotos } from './helpers'
+const postsPageId = process.env.POSTS_PAGE_ID
+const photosPageId = process.env.PHOTOS_PAGE_ID
 
-export async function getPosts (pageSize) {
-  const database = await fetch('https://api.notion.com/v1/databases/f73e9b4ec8c948748509a84a1830029d/query', {
-    method: 'POST',
-    headers: createHeaders(),
-    body: JSON.stringify({
-      page_size: pageSize||100,
-    })
-  })
-    .then(res => res.json())
-  const { object, results } = database
-  if (object==='error') {
-    return {
-      status: database.status,
-      code: database.code,
-      message: database.message
-    }
-  }
+export async function getPosts () {
+  const { items, collection } = await getList(postsPageId)
   return {
     status: 200,
-    posts: results.map(formatPostMetadata)
+    posts: formatPosts(items, collection)
   }
 }
 
-export async function getPostMetadata (id) {
-  const page = await fetch(`https://api.notion.com/v1/pages/${id}`, {
-    method: 'GET',
-    headers: createHeaders()
-  })
-    .then(res => res.json())
-  if (page.object==='error') {
-    return {
-      status: page.status,
-      code: page.code,
-      message: page.message
-    }
-  }
+export async function getPhotos () {
+  const { items, collection } = await getList(photosPageId)
   return {
     status: 200,
-    metadata: formatPostMetadata(page)
+    photos: formatPhotos(items, collection)
+  }
+}
+
+export async function getPostMetadata (pageId) {
+  const notion = new NotionAPI()
+  const recordMap = await notion.getPage(pageId)
+  const collection = Object.values(recordMap.collection)[0].value
+  const block = Object.values(recordMap.block)[0].value
+  return {
+    status: 200,
+    metadata: formatPost(block, collection)
   }
 }
 
@@ -49,29 +36,5 @@ export async function getPost (id) {
   return {
     status: 200,
     recordMap
-  }
-}
-
-export async function getPhotos (pageSize) {
-  const database = await fetch('https://api.notion.com/v1/databases/2560040bb60c4a7dae7fdf14f2dad404/query', {
-    method: 'POST',
-    headers: createHeaders(),
-    body: JSON.stringify({
-      page_size: pageSize||100,
-    })
-  })
-    .then(res => res.json())
-  const { object, results } = database
-
-  if (object==='error') {
-    return {
-      status: database.status,
-      code: database.code,
-      message: database.message
-    }
-  }
-  return {
-    status: 200,
-    photos: results.map(formatPhotoMetadata)
   }
 }

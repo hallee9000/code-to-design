@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import Center from '@/components/atoms/Center'
 import Tag from '@/components/atoms/Tag'
 import NotionPage from '@/components/NotionPage'
-import { getPostMetadata, getPost } from '@/lib/notion/api'
+import { getPost, getPostMetadata } from '@/lib/notion/api'
 import { relativeTime } from '@/lib/date'
 
 export const generateMetadata = async ({ params }) => {
