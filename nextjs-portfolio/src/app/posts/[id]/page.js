@@ -20,7 +20,7 @@ export default async function Post({ params }) {
   const { recordMap } = await getPost(id)
   const { metadata } = await getPostMetadata(id)
   const cookieStore = cookies()
-  const theme = cookieStore.get('theme')
+  const theme = cookieStore.get('theme')||{ value: 'light'}
 
   return (
     <Center className={"mt-16"}>

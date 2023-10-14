@@ -9,7 +9,7 @@ import Link from '@/components/atoms/Link'
 import GroupTitle from '@/components/GroupTitle'
 
 export default async function Home() {
-  const { photos } = await getPhotos(5)
+  const { photos } = await getPhotos()
   const { posts } = await getPosts()
 
   return (
